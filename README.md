@@ -445,6 +445,10 @@ Contributions are welcome! Please feel free to submit a Pull Request. For major 
 - [dockerfilelint](https://github.com/replicatedhq/dockerfilelint) - Node.js-based linter
 - [dockerfile-utils](https://github.com/rcjsuen/dockerfile-utils) - TypeScript Dockerfile utilities
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=deckrun/dockadvisor&type=date&legend=top-left)](https://www.star-history.com/#deckrun/dockadvisor&type=date&legend=top-left)
+
 ## Support
 
 - 📧 Report issues on [GitHub Issues](https://github.com/deckrun/dockadvisor/issues)
