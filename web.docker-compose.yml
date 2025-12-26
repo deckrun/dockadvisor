@@ -1,7 +1,0 @@
-services:
-  ui:
-    build:
-      context: .
-      dockerfile: web.Dockerfile
-    ports:
-      - "3030:80"
