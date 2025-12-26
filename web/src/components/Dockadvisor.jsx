@@ -1,3 +1,4 @@
+"use client"
 
 import {useEffect, useState} from "react";
 import React, {useRef} from "react";
@@ -389,7 +390,7 @@ export function DockadvisorEditor({score, setScore, isEmpty, setIsEmpty, isCalcu
           range: new monaco.Range(rule.startLine, 1, rule.endLine, 1),
           options: {
             isWholeLine: true,
-            className: rule.severity === 'error' ? 'cm-line-highlight-error' : 'cm-line-highlight-warning',
+            className: rule.severity === 'error' || rule.severity === 'fatal' ? 'cm-line-highlight-error' : 'cm-line-highlight-warning',
             hoverMessage: {value: rule.description},
           },
         }));
@@ -735,7 +736,7 @@ function RuleWarning({rule, onGoToLine}) {
     onGoToLine(rule.startLine);
   };
 
-  const isError = rule.severity === 'error';
+  const isError = rule.severity === 'error' || rule.severity === 'fatal';
   const Icon = isError ? ExclamationCircleIcon : ExclamationTriangleIcon;
   const iconColor = isError ? 'text-red-500' : 'text-yellow-500';
   const hoverBorderColor = isError ? 'hover:border-red-400' : 'hover:border-yellow-400';
