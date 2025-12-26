@@ -382,7 +382,7 @@ export function DockadvisorEditor({score, setScore, isEmpty, setIsEmpty, isCalcu
         // Sort rules by line number
         const sortedRules = currentRules.sort((a, b) => a.startLine - b.startLine);
         setRules(sortedRules);
-        setScore(result.score || 100);
+        setScore(result.score ?? 100);
         setIsCalculating(false);
 
         const decorations = result.rules.map(rule => ({

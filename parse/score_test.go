@@ -222,3 +222,14 @@ func TestInvalidInstructionRule(t *testing.T) {
 	require.Equal(t, "", rule.Url)
 	require.Equal(t, SeverityError, rule.Severity)
 }
+
+func TestUnrecognizedInstructionScore(t *testing.T) {
+	dockerfile := `FROM alpine:latest
+WORKDIR /app
+FOOBAR invalid
+CMD ["echo", "hello"]`
+
+	result, err := ParseDockerfile(dockerfile)
+	require.NoError(t, err)
+	require.Equal(t, 0, result.Score, "Dockerfile with UnrecognizedInstruction should have score 0")
+}

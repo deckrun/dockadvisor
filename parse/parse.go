@@ -14,6 +14,7 @@ const invalidInstructionCode = "InvalidInstruction"
 type Severity string
 
 const (
+	SeverityFatal   Severity = "fatal"
 	SeverityError   Severity = "error"
 	SeverityWarning Severity = "warning"
 )
@@ -53,6 +54,18 @@ func NewWarningRule(node *parser.Node, code, description, url string) Rule {
 		Description: description,
 		Url:         url,
 		Severity:    SeverityWarning,
+	}
+}
+
+// NewFatalRule creates a new Rule with fatal severity
+func NewFatalRule(node *parser.Node, code, description, url string) Rule {
+	return Rule{
+		StartLine:   node.StartLine,
+		EndLine:     node.EndLine,
+		Code:        code,
+		Description: description,
+		Url:         url,
+		Severity:    SeverityFatal,
 	}
 }
 
@@ -192,7 +205,7 @@ func ParseDockerfile(dockerfileContent string) (*Result, error) {
 			insRules = parseMAINTAINER(child)
 		default:
 			// Unrecognized instruction
-			insRules = []Rule{NewErrorRule(child, "UnrecognizedInstruction",
+			insRules = []Rule{NewFatalRule(child, "UnrecognizedInstruction",
 				fmt.Sprintf("'%s' is not a recognized Dockerfile instruction", instruction),
 				"https://docs.docker.com/reference/dockerfile/")}
 		}
@@ -212,10 +225,13 @@ func invalidInstructionRule(node *parser.Node, description string) Rule {
 
 // calculateScore calculates the Dockerfile score based on rule violations
 // Score = 100 - (errors × 15 + warnings × 5), minimum 0
+// If any fatal rule is found, score is 0
 func calculateScore(rules []Rule) int {
 	var errorCount, warningCount int
 	for _, rule := range rules {
-		if rule.Severity == SeverityError {
+		if rule.Severity == SeverityFatal {
+			return 0
+		} else if rule.Severity == SeverityError {
 			errorCount++
 		} else if rule.Severity == SeverityWarning {
 			warningCount++
