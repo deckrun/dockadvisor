@@ -35,4 +35,4 @@ RUN npm run build
 FROM nginx:1.29-alpine AS nginx
 
 COPY --from=nodebuilder /app/dist/ /usr/share/nginx/html
-COPY --from=gobuilder /build/dockadvisor.wasm /usr/share/nginx/html/public
+COPY --from=gobuilder /build/dockadvisor.wasm /usr/share/nginx/html/js
