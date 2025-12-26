@@ -81,13 +81,13 @@ const go = new Go();
 WebAssembly.instantiateStreaming(fetch("dockadvisor.wasm"), go.importObject)
     .then((result) => {
         go.run(result.instance);
-        
+
         // Call the parseDockerfile function
         const dockerfileContent = `
 FROM alpine:latest as builder
 WORKDIR usr/app
 `;
-        
+
         const result = parseDockerfile(dockerfileContent);
 
         if (result.success) {
@@ -101,6 +101,18 @@ WORKDIR usr/app
         }
     });
 ```
+
+### As a Web Interface
+
+![Dockadvisor screenshot](img/screenshot.png)
+
+Run Dockadvisor using Docker Compose:
+```bash
+# Start the web interface using Docker Compose
+docker compose up
+```
+
+And then access the application at http://localhost:3030
 
 ## API Reference
 
