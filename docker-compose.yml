@@ -3,5 +3,6 @@ services:
     build:
       context: .
       dockerfile: web.Dockerfile
+    image: deckrun/dockadvisor
     ports:
       - "3030:80"
