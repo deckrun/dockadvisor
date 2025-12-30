@@ -428,21 +428,21 @@ SHELL ['/bin/sh', '-c']
 
 		// Expected violations - one per instruction type
 		expectedRules := []string{
-			"ArgInvalidFormat",           // ARG 1INVALID=value
-			"FromAsCasing",               // FROM debian:latest as builder
-			"RunInvalidNetworkFlag",      // RUN --network=invalid
-			"CmdInvalidExecForm",         // CMD ['single', 'quotes']
-			"LabelInvalidFormat",         // LABEL version 1.0
-			"ExposeInvalidFormat",        // EXPOSE 80:8080
-			"EnvInvalidFormat",           // ENV =invalid
-			"AddInvalidFlag",             // ADD --from=invalid
-			"CopyInvalidFlag",            // COPY --invalid
-			"EntrypointInvalidExecForm",  // ENTRYPOINT ['single', 'quotes']
-			"VolumeInvalidJsonForm",      // VOLUME ['/data']
-			"UserInvalidFormat",          // USER user:group:extra
-			"WorkdirRelativePath",        // WORKDIR relative/path
-			"InvalidInstruction",         // ONBUILD, STOPSIGNAL, HEALTHCHECK (3 instances)
-			"ShellInvalidJsonForm",       // SHELL ['/bin/sh', '-c']
+			"ArgInvalidFormat",          // ARG 1INVALID=value
+			"FromAsCasing",              // FROM debian:latest as builder
+			"RunInvalidNetworkFlag",     // RUN --network=invalid
+			"CmdInvalidExecForm",        // CMD ['single', 'quotes']
+			"LabelInvalidFormat",        // LABEL version 1.0
+			"ExposeInvalidFormat",       // EXPOSE 80:8080
+			"EnvInvalidFormat",          // ENV =invalid
+			"AddInvalidFlag",            // ADD --from=invalid
+			"CopyInvalidFlag",           // COPY --invalid
+			"EntrypointInvalidExecForm", // ENTRYPOINT ['single', 'quotes']
+			"VolumeInvalidJsonForm",     // VOLUME ['/data']
+			"UserInvalidFormat",         // USER user:group:extra
+			"WorkdirRelativePath",       // WORKDIR relative/path
+			"InvalidInstruction",        // ONBUILD, STOPSIGNAL, HEALTHCHECK (3 instances)
+			"ShellInvalidJsonForm",      // SHELL ['/bin/sh', '-c']
 		}
 
 		// Create a map of actual rule codes for easy lookup

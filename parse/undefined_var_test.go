@@ -350,14 +350,14 @@ COPY $FOO /app/`,
 			expectedCount: 0, // FOO is defined by both ARG and ENV
 		},
 		{
-			name: "undefined in FROM platform flag",
+			name:              "undefined in FROM platform flag",
 			dockerfileContent: `FROM --platform=$UNDEFINED alpine`,
-			expectedCount: 1,
+			expectedCount:     1,
 		},
 		{
-			name: "undefined in FROM image reference",
+			name:              "undefined in FROM image reference",
 			dockerfileContent: `FROM alpine:$UNDEFINED`,
-			expectedCount: 1,
+			expectedCount:     1,
 		},
 		{
 			name: "multiple undefined in same instruction",

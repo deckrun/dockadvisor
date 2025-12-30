@@ -161,10 +161,10 @@ FROM alpine AS base`,
 
 func TestParseDockerfileWithDuplicateStageNames(t *testing.T) {
 	tests := []struct {
-		name                      string
-		dockerfileContent         string
-		expectedDuplicateRules    int
-		expectedTotalRules        int
+		name                   string
+		dockerfileContent      string
+		expectedDuplicateRules int
+		expectedTotalRules     int
 	}{
 		{
 			name: "valid unique stage names",

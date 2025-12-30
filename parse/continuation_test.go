@@ -8,10 +8,10 @@ import (
 
 func TestCheckEmptyContinuations(t *testing.T) {
 	tests := []struct {
-		name             string
+		name              string
 		dockerfileContent string
-		expectViolation  bool
-		expectedCount    int
+		expectViolation   bool
+		expectedCount     int
 	}{
 		// Valid cases (no violations)
 		{
@@ -123,10 +123,10 @@ RUN apk add \
 			expectedCount:   1,
 		},
 		{
-			name: "carriage return on continuation line",
+			name:              "carriage return on continuation line",
 			dockerfileContent: "FROM alpine\nRUN apk add \\\n\r\n    curl",
-			expectViolation: true,
-			expectedCount:   1,
+			expectViolation:   true,
+			expectedCount:     1,
 		},
 		{
 			name: "multiple instructions with violations",

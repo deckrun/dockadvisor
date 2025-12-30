@@ -12,12 +12,14 @@ import (
 // 2. The stage is referenced in another FROM instruction (multi-stage build pattern)
 //
 // This allows the valid pattern:
-//   FROM --platform=linux/amd64 alpine AS build_amd64
-//   FROM --platform=linux/arm64 alpine AS build_arm64
-//   FROM build_${TARGETARCH} AS build
+//
+//	FROM --platform=linux/amd64 alpine AS build_amd64
+//	FROM --platform=linux/arm64 alpine AS build_arm64
+//	FROM build_${TARGETARCH} AS build
 //
 // But disallows standalone constant platforms:
-//   FROM --platform=linux/amd64 alpine
+//
+//	FROM --platform=linux/amd64 alpine
 func checkPlatformFlagConstDisallowed(ast *parser.Node) []Rule {
 	if ast == nil || len(ast.Children) == 0 {
 		return nil

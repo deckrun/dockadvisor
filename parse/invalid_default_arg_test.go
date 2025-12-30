@@ -40,9 +40,9 @@ RUN echo ${TAG}`,
 			expectViolation: false, // Not a global ARG
 		},
 		{
-			name: "no ARG usage in FROM",
+			name:              "no ARG usage in FROM",
 			dockerfileContent: `FROM alpine:latest`,
-			expectViolation: false,
+			expectViolation:   false,
 		},
 		{
 			name: "multiple ARGs with defaults",

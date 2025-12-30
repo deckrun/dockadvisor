@@ -235,12 +235,12 @@ func checkPlatformFormat(platform string) bool {
 	// If arch is specified, validate it
 	if len(parts) >= 2 {
 		validArch := map[string]bool{
-			"amd64": true,
-			"arm64": true,
-			"arm":   true,
-			"386":   true,
+			"amd64":   true,
+			"arm64":   true,
+			"arm":     true,
+			"386":     true,
 			"ppc64le": true,
-			"s390x": true,
+			"s390x":   true,
 			"riscv64": true,
 		}
 		if !validArch[parts[1]] {
@@ -270,6 +270,7 @@ func checkStageNameFormat(stageName string) bool {
 // Reserved words are:
 //   - "scratch" (case-insensitive)
 //   - "context" (case-insensitive)
+//
 // Examples:
 //   - "scratch" -> true (reserved)
 //   - "SCRATCH" -> true (reserved, case-insensitive)

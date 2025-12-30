@@ -32,14 +32,14 @@ cmd ["sh"]`,
 			expectViolation: false,
 		},
 		{
-			name: "single instruction uppercase",
+			name:              "single instruction uppercase",
 			dockerfileContent: `FROM alpine`,
-			expectViolation: false,
+			expectViolation:   false,
 		},
 		{
-			name: "single instruction lowercase",
+			name:              "single instruction lowercase",
 			dockerfileContent: `from alpine`,
-			expectViolation: false,
+			expectViolation:   false,
 		},
 		// Invalid cases (violations)
 		{
@@ -48,9 +48,9 @@ cmd ["sh"]`,
 RUN echo hello
 from debian
 EXPOSE 80`,
-			expectViolation: true,
+			expectViolation:   true,
 			expectedRuleCodes: []string{"ConsistentInstructionCasing"},
-			expectedCount: 1,
+			expectedCount:     1,
 		},
 		{
 			name: "mixed case - majority lowercase",
@@ -58,18 +58,18 @@ EXPOSE 80`,
 run echo hello
 FROM debian
 expose 80`,
-			expectViolation: true,
+			expectViolation:   true,
 			expectedRuleCodes: []string{"ConsistentInstructionCasing"},
-			expectedCount: 1,
+			expectedCount:     1,
 		},
 		{
 			name: "pascal case instruction",
 			dockerfileContent: `FROM alpine
 Run echo hello
 EXPOSE 80`,
-			expectViolation: true,
+			expectViolation:   true,
 			expectedRuleCodes: []string{"ConsistentInstructionCasing"},
-			expectedCount: 1,
+			expectedCount:     1,
 		},
 		{
 			name: "multiple mixed case instructions",
@@ -90,17 +90,17 @@ Cmd ["sh"]`,
 			name: "equal split prefers uppercase",
 			dockerfileContent: `FROM alpine
 from debian`,
-			expectViolation: true,
+			expectViolation:   true,
 			expectedRuleCodes: []string{"ConsistentInstructionCasing"},
-			expectedCount: 1,
+			expectedCount:     1,
 		},
 		{
 			name: "camelCase instruction",
 			dockerfileContent: `FROM alpine
 runCommand echo hello`,
-			expectViolation: true,
+			expectViolation:   true,
 			expectedRuleCodes: []string{"ConsistentInstructionCasing", "UnrecognizedInstruction"},
-			expectedCount: 2, // Both casing inconsistency and unrecognized instruction
+			expectedCount:     2, // Both casing inconsistency and unrecognized instruction
 		},
 		{
 			name: "mixed with all uppercase majority",
@@ -110,9 +110,9 @@ WORKDIR /app
 copy . .
 EXPOSE 80
 CMD ["sh"]`,
-			expectViolation: true,
+			expectViolation:   true,
 			expectedRuleCodes: []string{"ConsistentInstructionCasing"},
-			expectedCount: 1,
+			expectedCount:     1,
 		},
 		{
 			name: "mixed with all lowercase majority",
@@ -122,9 +122,9 @@ workdir /app
 COPY . .
 expose 80
 cmd ["sh"]`,
-			expectViolation: true,
+			expectViolation:   true,
 			expectedRuleCodes: []string{"ConsistentInstructionCasing"},
-			expectedCount: 1,
+			expectedCount:     1,
 		},
 	}
 
