@@ -1,11 +1,16 @@
-.PHONY: build tinybuild clean test test-wasm
+.PHONY: build build-wasm tinybuild clean test test-wasm
 
-# Output file
-OUTPUT := dockadvisor.wasm
+# Output files
+WASM_OUTPUT := dockadvisor.wasm
+CLI_OUTPUT := dockadvisor
+
+# Build the CLI binary
+build:
+	go build -o $(CLI_OUTPUT) ./cmd/dockadvisor
 
 # Build the WebAssembly binary
-build:
-	GOOS=js GOARCH=wasm go build -o $(OUTPUT) wasm/wasm.go
+build-wasm:
+	GOOS=js GOARCH=wasm go build -o $(WASM_OUTPUT) wasm/wasm.go
 
 # Run all tests
 test: test-wasm
@@ -17,5 +22,5 @@ test-wasm:
 
 # Clean build artifacts
 clean:
-	rm -f $(OUTPUT)
+	rm -f $(WASM_OUTPUT) $(CLI_OUTPUT)
 
