@@ -1,6 +1,6 @@
 # Dockadvisor
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/deckrun/dockadvisor)](https://goreportcard.com/report/github.com/deckrun/dockadvisor)
+[![Build Status][ci-badge]][ci-runs] [![Go Reference][reference-badge]][reference] [![Go Report Card](https://goreportcard.com/badge/github.com/deckrun/dockadvisor)](https://goreportcard.com/report/github.com/deckrun/dockadvisor)
 
 A fast, lightweight Dockerfile linter written in Go that helps you write better Dockerfiles by detecting common issues and anti-patterns.
 
@@ -340,4 +340,13 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribute to th
 ---
 
 Made with ❤️ for better Dockerfiles
+
+
+[ci-badge]:             https://github.com/deckrun/dockadvisor/actions/workflows/test.yml/badge.svg
+[ci-runs]:              https://github.com/deckrun/dockadvisor/actions
+[reference-badge]:      https://pkg.go.dev/badge/github.com/deckrun/dockadvisor.svg
+[reference]:            https://pkg.go.dev/github.com/deckrun/dockadvisor
+[go-report-card-badge]: https://goreportcard.com/badge/github.com/deckrun/dockadvisor
+[go-report-card]:       https://goreportcard.com/report/github.com/deckrun/dockadvisor
+
 
